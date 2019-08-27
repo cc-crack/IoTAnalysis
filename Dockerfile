@@ -10,7 +10,7 @@ RUN apt update && apt -y install net-tools build-essential  autoconf automake li
      gdb-multiarch \
      && apt -y build-dep qemu
 
-COPY ./init.sh ~/
+COPY init.sh /root/
 RUN  git clone https://github.com/ReFirmLabs/binwalk.git /tmp/binwalk && cd /tmp/binwalk && python3 setup.py install && ./deps.sh --yes 18 && cd / && rm -rf /tmp/binwalk && \
      git clone git://git.qemu.org/qemu.git /tmp/qemu && cd /tmp/qemu && git submodule update --init --recursive \
      && ./configure --prefix=$(cd ..; pwd)/qemu-user-static --static --disable-system --enable-linux-user \
