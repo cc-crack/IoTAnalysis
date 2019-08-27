@@ -8,7 +8,7 @@ RUN apt update && apt -y install net-tools build-essential  autoconf automake li
      gcc-arm-none-eabi gcc-arm-linux-gnueabi \
      gcc-mips-linux-gnu \
      gdb-multiarch \
-     && apt build-dep qemu
+     && apt -y build-dep qemu
 
 COPY ./init.sh ~/
 RUN  git clone https://github.com/ReFirmLabs/binwalk.git /tmp/binwalk && cd /tmp/binwalk && python3 setup.py install && ./deps.sh --yes 18 && cd / && rm -rf /tmp/binwalk && \
