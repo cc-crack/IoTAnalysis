@@ -2,7 +2,7 @@
 
 ## Start
 
-```docker run -it --name iot --privilege -v $(pwd):/data pk8995/iotanalysis ```
+```docker run -it --name iot --privileged -v $(pwd):/data pk8995/iotanalysis ```
 
 ## Stop
 
