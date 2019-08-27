@@ -16,8 +16,8 @@ RUN  git clone https://github.com/ReFirmLabs/binwalk.git /tmp/binwalk && cd /tmp
      && ./configure --prefix=$(cd ..; pwd)/qemu-user-static --static --disable-system --enable-linux-user \
      && make -j8 && make install && cp /tmp/qemu/scripts/qemu-binfmt-conf.sh /usr/bin/ && cd ../qemu-user-static/bin &&  for i in *; do cp $i $i-static; done \
      && cp *-static /usr/local/bin/ \
-     chmod +x /root/init.sh \
-     chmod +x /usr/bin/qemu-binfmt-conf.sh
+     && chmod +x /root/init.sh \
+     && chmod +x /usr/bin/qemu-binfmt-conf.sh
 VOLUME /data
 EXPOSE 4096
 ENTRYPOINT ["/root/init.sh"]
