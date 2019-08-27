@@ -11,7 +11,9 @@ RUN apt update && apt -y install net-tools build-essential  autoconf automake li
 
 COPY ./init.sh ~/
 RUN  git clone https://github.com/ReFirmLabs/binwalk.git /tmp/binwalk && cd /tmp/binwalk && python3 setup.py install && ./deps.sh --yes 18 && cd / && rm -rf /tmp/binwalk && \
-     git clone git://git.qemu.org/qemu.git /tmp/qemu && cd /tmp/qemu && ./configure && make && make install && cp /tmp/qemu/scripts/qemu-binfmt-conf.sh /usr/bin/ && cd / && rm -rf /tmp/qemu \
+     git clone git://git.qemu.org/qemu.git /tmp/qemu && cd /tmp/qemu && git submodule update --init --recursive \
+     && ./configure --static --disable-system --enable-linux-user \
+     && make && make install && cp /tmp/qemu/scripts/qemu-binfmt-conf.sh /usr/bin/ && \
      chmod +x /root/init.sh \
      chmod +x /usr/bin/qemu-binfmt-conf.sh
 VOLUME /data
